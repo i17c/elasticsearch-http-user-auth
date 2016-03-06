@@ -44,15 +44,21 @@ public class HttpUserAuthPlugin extends Plugin {
 
         	String[] whitelist = settings.getAsArray("http.user.auth.whitelist", new String[]{"127.0.0.1"});
         	String[] blacklist = settings.getAsArray("http.user.auth.blacklist", new String[]{});
+        	String[] unprotectlist = settings.getAsArray("http.user.auth.unprotectlist", new String[]{"/status.taobao","/_plugin/head/status.taobao"});
 
         	if (whitelist != null ) {
         		IPAuthenticator.setWhitelist(whitelist);
 	            	Loggers.getLogger(getClass()).warn("http-user-auth plugin IP whitelist enabled " + Arrays.toString(whitelist));
         	}
-        	if (blacklist != null ) {
-        		IPAuthenticator.setBlacklist(blacklist);
-	            	Loggers.getLogger(getClass()).warn("http-user-auth plugin IP blacklist enabled " + Arrays.toString(blacklist));
-        	}
+			if (blacklist != null ) {
+				IPAuthenticator.setBlacklist(blacklist);
+				Loggers.getLogger(getClass()).warn("http-user-auth plugin IP blacklist enabled " + Arrays.toString(blacklist));
+			}
+
+			if (unprotectlist != null ) {
+				UrlAuthenticator.setUnProtectList(unprotectlist);
+				Loggers.getLogger(getClass()).warn("http-user-auth plugin unprotectlist enabled " + Arrays.toString(unprotectlist));
+			}
     		
             module.addRestAction(AuthRestHandler.class);
             Loggers.getLogger(getClass()).info("http-user-auth plugin is enabled");

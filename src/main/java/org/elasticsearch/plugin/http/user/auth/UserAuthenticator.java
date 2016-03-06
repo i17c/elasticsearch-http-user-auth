@@ -39,8 +39,6 @@ public class UserAuthenticator {
 	/**
 	 * authenticate a combination of user, password and path
 	 * @param path
-	 * @param user
-	 * @param password
 	 * @return
 	 */
 	public boolean execAuth(String path) {
@@ -69,7 +67,6 @@ public class UserAuthenticator {
 
 	/**
 	 * load authentication info when ES instance starts
-	 * @param userPassIndices List < Map <key, val>> 
 	 */
 	public static void loadRootUserDataCacheOnStart() {
 		ESLoggerFactory.getRootLogger().error("loadRootUserDataCacheOnStart");
@@ -78,7 +75,7 @@ public class UserAuthenticator {
 	
 	/**
 	 * reload authentication info
-	 * @param userPassIndices List < Map <key, val>> 
+	 * @param userDataList List<UserData>
 	 */
 	public static void reloadUserDataCache(List<UserData> userDataList) {
 		users  = Maps.newConcurrentMap();

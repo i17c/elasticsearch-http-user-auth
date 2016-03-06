@@ -50,6 +50,12 @@ public class AuthRestFilter extends RestFilter {
 					return;
 			}
 
+			UrlAuthenticator urlAuthenticator = new UrlAuthenticator();
+			if(urlAuthenticator.isWhiteUrl(request.path())){
+				filterChain.continueProcessing(request, channel);
+				return;
+			}
+
 			// auth check
 			RequestAnalyzer requestAnalyzer = new RequestAnalyzer(request);
 			String username = requestAnalyzer.getUsername();
@@ -58,7 +64,7 @@ public class AuthRestFilter extends RestFilter {
 				BytesRestResponse resp = new BytesRestResponse(RestStatus.UNAUTHORIZED, "Needs Basic Auth");
 				resp.addHeader("WWW-Authenticate", "Basic realm=\"Http User Auth Plugin\"");
 		        channel.sendResponse(resp);
-	            Loggers.getLogger(getClass()).error("auth failed: " + request.path());
+	            Loggers.getLogger(getClass()).error("auth failed: " + request.path()+", ip: "+ipaddr);
 				return ;
 			}
 			

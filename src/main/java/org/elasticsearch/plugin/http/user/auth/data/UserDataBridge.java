@@ -87,9 +87,8 @@ public class UserDataBridge {
 	
 	/**
 	 * add permission to an user with specified indices
-	 * @param user
-	 * @param password
-	 * @param path
+	 * @param userName
+	 * @param indexName
 	 * @return
 	 */
 	public boolean addAuthIndex (String userName, String indexName) {
@@ -127,9 +126,8 @@ public class UserDataBridge {
 	
 	/**
 	 * update permission of an user with specified indices
-	 * @param user
-	 * @param password
-	 * @param path
+	 * @param userName
+	 * @param indexName
 	 * @return
 	 */
 	public boolean updateAuthIndex (String userName, String indexName) {
@@ -167,9 +165,9 @@ public class UserDataBridge {
 	
 	/**
 	 * add permission to an user with a specified index
-	 * @param user
+	 * @param userName
 	 * @param password
-	 * @param path
+	 * @param indexName
 	 * @return
 	 */
 	public boolean removeAuth (String userName, String password, String indexName) {
